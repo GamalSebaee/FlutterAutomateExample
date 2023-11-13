@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: AppAutomate
 
 on:
   push:
@@ -50,30 +50,9 @@ jobs:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
 
-      - name: Archive files
-        run: |
-          sudo apt-get update
-          sudo apt-get install zip
-          zip -r archive.zip *
-
-      - name: Upload to gdrive
-        uses: adityak74/google-drive-upload-git-action@main
+      - name: Upload Artifacts TO Google Drive
+        uses: Jumbo810/Upload_Github_Artifacts_TO_GDrive@v2.2.2
         with:
-          credentials: ${{ secrets.credentials }}
-          filename: "archive.zip"
-          folderId: ${{ secrets.folderId }}
-          name: "documentation.zip" # optional string
-          overwrite: "true" # optional boolean
-      - name: Make Directory Structure
-        run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z
-      - name: Mirror Directory Structure
-        uses: adityak74/google-drive-upload-git-action@main
-        with:
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: w/x/y/z
-          folderId: ${{ secrets.folderId }}
-          overwrite: "true"
-          mirrorDirectoryStructure: "true"
-
+          target: build/app/outputs/apk/release/app-release.apk
+          credentials: ${{ secrets.<YOUR_SERVICE_ACCOUNT_CREDENTIALS> }}
+          parent_folder_id: 1dEQaXqjkbqDNvlA5MV0BNDVCRyek_eEs
