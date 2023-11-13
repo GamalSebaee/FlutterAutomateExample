@@ -54,7 +54,7 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.credentials }}
-          filename: "maqraa.apk"
+          filename: "app-release.apk"
           folderId: ${{ secrets.folderId }}
           name: "documentation.zip" # optional string
           overwrite: "true" # optional boolean
