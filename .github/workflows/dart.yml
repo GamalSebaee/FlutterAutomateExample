@@ -54,5 +54,5 @@ jobs:
         uses: Jumbo810/Upload_Github_Artifacts_TO_GDrive@v2.2.2
         with:
           target: build/app/outputs/apk/release/app-release.apk
-          credentials: ${{ secrets.<YOUR_SERVICE_ACCOUNT_CREDENTIALS> }}
+          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
           parent_folder_id: 1dEQaXqjkbqDNvlA5MV0BNDVCRyek_eEs
