@@ -59,7 +59,7 @@ jobs:
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.credentials }}
+          credentials: ${{secrets.GOOGLEDRIVEKEY}}
           filename: "build/app/outputs/apk/release/app-release.apk"
           folderId: "1dEQaXqjkbqDNvlA5MV0BNDVCRyek_eEs"
           name: "TestApp14-11-2023.apk" # optional string
