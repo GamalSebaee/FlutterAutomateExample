@@ -50,9 +50,18 @@ jobs:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
 
-      - name: Upload Artifacts TO Google Drive
-        uses: Jumbo810/Upload_Github_Artifacts_TO_GDrive@v2.2.2
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r archive.zip *
+
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
         with:
-          target: build/app/outputs/apk/release/app-release.apk
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          parent_folder_id: 1dEQaXqjkbqDNvlA5MV0BNDVCRyek_eEs
+          credentials: ${{ secrets.credentials }}
+          filename: "build/app/outputs/apk/release/app-release.apk"
+          folderId: "1dEQaXqjkbqDNvlA5MV0BNDVCRyek_eEs"
+          name: "TestApp14-11-2023.apk" # optional string
+          overwrite: "true" # optional boolean
+          mimeType: "application/vnd.android.package-archive"
