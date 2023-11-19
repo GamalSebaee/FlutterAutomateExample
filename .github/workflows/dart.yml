@@ -61,8 +61,21 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GOOGLEDRIVEKEY }}
-          filename: "build/app/outputs/apk/release/app-release.apk"
+          filename: "archive.zip"
           folderId: "1dEQaXqjkbqDNvlA5MV0BNDVCRyek_eEs"
           name: "TestApp14-11-2023.apk" # optional string
           overwrite: "true" # optional boolean
           mimeType: "application/vnd.android.package-archive"
+
+      - name: Make Directory Structure
+        run: |
+          mkdir -p w/x/y
+          date +%s > w/x/y/z
+      - name: Mirror Directory Structure
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
+          filename: w/x/y/z
+          folderId: ${{ secrets.folderId }}
+          overwrite: "true"
+          mirrorDirectoryStructure: "true"
